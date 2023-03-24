@@ -1,91 +1,65 @@
 import { nanoid } from 'nanoid';
 import { Component } from 'react';
-import {
-  Container,
-  TitleForm,
-  FormInput,
-  ButtonForm,
-  LabelForm,
-  InputForm,
-} from './App.styled';
+import { Container, TitleForm, TitleContacts } from './App.styled';
+import ContactForm from '../ContactForm/ContactForm';
 import ContactsList from '../ContactsList/ContactsList';
+import Filter from '../Filter/Filter';
 
-const INITIAL_STATE = {
-  name: '',
-  number: '',
-};
 class App extends Component {
   state = {
-    contacts: [],
-    name: '',
-    number: '',
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    filter: '',
   };
 
-  idName = nanoid();
-  idNumber = nanoid();
-  idContact = nanoid();
-
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmitForm = e => {
-    e.preventDefault();
-    
+  updateState = date => {
     this.setState(prevState => ({
       contacts: [
-        { name: this.state.name, number: this.state.number, id: nanoid() },
+        { name: date.name, number: date.number, id: nanoid() },
         ...prevState.contacts,
       ],
     }));
-
-    this.reset();
   };
 
+  updateFilter = date => {
+    this.setState({ filter: date });
+  };
 
+  /*
+  const values = [51, -3, 27, 21, -68, 42, -37];
+const positiveValues = values.filter(value => value >= 0);
+console.log(positiveValues); // [51, 27, 21, 42]
+  */
 
-  reset = () => {
-    this.setState({ ...INITIAL_STATE });
+  filterByName = () => {
+    const { contacts, filter } = this.state;
+    // console.log(contacts[0].name, filter);
+    const arr = contacts.filter(el =>
+      el.name.toLowerCase().includes(filter.toLowerCase())
+    );
+    console.log(arr); 
+    return arr;
   };
 
   render() {
-    const { name, number, contacts } = this.state;
+    const { contacts, filter } = this.state;
     return (
       <Container>
         <TitleForm>Phonebook</TitleForm>
-        <FormInput onSubmit={this.handleSubmitForm}>
-          <LabelForm htmlFor={this.idName}>
-            Name
-            <InputForm
-              id={this.idName}
-              type="text"
-              name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-              onChange={this.handleChange}
-              value={name}
-            />
-          </LabelForm>
-          <LabelForm htmlFor={this.idNumber}>
-            Number
-            <InputForm
-              id={this.idNumber}
-              type="tel"
-              name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-              onChange={this.handleChange}
-              value={number}
-            />
-          </LabelForm>
-          <ButtonForm type="submit" disabled={!(name || number)}>
-            Add contact
-          </ButtonForm>
-        </FormInput>
-        <ContactsList state={contacts} />
+        <ContactForm updateState={this.updateState} />
+        <TitleContacts>Contacts</TitleContacts>
+        <Filter state={filter} updateFilter={this.updateFilter} />
+        {this.state.filter === '' ? (
+          <ContactsList state={contacts} />
+        ) : (
+          // this.filterByName()
+          // console.log(555)
+            <ContactsList state={this.filterByName()} />
+        )}
       </Container>
     );
   }
