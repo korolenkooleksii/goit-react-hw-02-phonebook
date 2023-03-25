@@ -31,13 +31,6 @@ class App extends Component {
 
   updateFilter = date => {
     this.setState({ filter: date });
-
-    // const { contacts, filter } = this.state;
-    // console.log(contacts, filter);
-    // const arr = contacts.filter(el =>
-    //   el.name.toLowerCase().includes(filter.toLowerCase())
-    // );
-    // return arr;
   };
 
   filterByName = () => {
@@ -47,17 +40,6 @@ class App extends Component {
     );
     return arr;
   };
-
-  // filterByName = () => {
-  //   const { contacts, filter } = this.state;
-
-  //   const filteredArray = contacts.reduce((acc, el) => {
-  //     (el.name.toLowerCase().includes(filter.toLowerCase())) && acc.push(el)
-  //     return acc.push(el)
-  //   }, []);
-
-  //   return filteredArray;
-  // };
 
   deleteContact = id => {
     this.setState(prevState => ({
@@ -76,13 +58,10 @@ class App extends Component {
         {this.state.filter === '' ? (
           <ContactsList state={contacts} deleteContact={this.deleteContact} />
         ) : (
-          // console.log(this.filterByName())
           <ContactsList
             state={this.filterByName()}
             deleteContact={this.deleteContact}
           />
-          // <ContactsList state={this.updateFilterByName()} />
-          // console.log(99999999)
         )}
       </Container>
     );

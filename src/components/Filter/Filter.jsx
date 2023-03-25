@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { Wrapper, LabelForm, InputForm } from './Filter.styled';
+import PropTypes from 'prop-types';
 
 const Filter =({state, updateFilter})=> {
 
@@ -23,5 +24,10 @@ const Filter =({state, updateFilter})=> {
     );
 
 }
+
+Filter.propTypes = {
+  state: PropTypes.string,
+  updateFilter: PropTypes.func,
+};
 
 export default Filter;
