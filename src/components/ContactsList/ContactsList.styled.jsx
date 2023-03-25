@@ -9,7 +9,6 @@ export const ListContacts = styled.ul`
 
 export const ItemContacts = styled.li`
   display: flex;
-  text-align: center;
   align-items: center;
   justify-content: flex-start;
   gap: 5px;
