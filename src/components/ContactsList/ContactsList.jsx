@@ -5,12 +5,14 @@ import {
   ListContacts,
   ButtonDelete,
 } from './ContactsList.styled';
+import { TbPoint } from 'react-icons/tb';
 
 const ContactsList = ({ state, deleteContact }) => {
   return (
     <ListContacts>
       {state.map(({ name, number, id }) => (
         <ItemContacts key={nanoid()} id={id}>
+          <TbPoint/>
           {name}: {number}
           <ButtonDelete
             type="button"

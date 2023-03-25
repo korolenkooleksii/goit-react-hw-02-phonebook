@@ -5,21 +5,22 @@ export const ListContacts = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-left: 10px;
-  /* list-style: inside; */
 `;
 
 export const ItemContacts = styled.li`
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
   font-size: 20px;
   color: ${p => p.theme.colors.dark};
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 `;
 
 export const ButtonDelete = styled.button`
   min-width: 60px;
   padding: 2px;
+  margin-left: auto;
   border: 1px solid ${p => p.theme.colors.dark};
   border-radius: 4px;
   text-align: center;
