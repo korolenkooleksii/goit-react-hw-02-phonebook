@@ -11,7 +11,7 @@ const ContactsList = ({ state, deleteContact }) => {
   return (
     <ListContacts>
       {state.map(({ name, number, id }) => (
-        <ItemContacts key={id} id={id}>
+        <ItemContacts key={id}>
           <TbPoint />
           {name}: {number}
           <ButtonDelete
