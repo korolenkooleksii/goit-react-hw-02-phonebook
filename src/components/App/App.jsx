@@ -74,10 +74,13 @@ class App extends Component {
         <TitleContacts>Contacts</TitleContacts>
         <Filter state={filter} updateFilter={this.updateFilter} />
         {this.state.filter === '' ? (
-          <ContactsList state={contacts} />
+          <ContactsList state={contacts} deleteContact={this.deleteContact} />
         ) : (
           // console.log(this.filterByName())
-          <ContactsList state={this.filterByName()} />
+          <ContactsList
+            state={this.filterByName()}
+            deleteContact={this.deleteContact}
+          />
           // <ContactsList state={this.updateFilterByName()} />
           // console.log(99999999)
         )}
