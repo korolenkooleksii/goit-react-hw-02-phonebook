@@ -59,6 +59,12 @@ class App extends Component {
   //   return filteredArray;
   // };
 
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
+  };
+
   render() {
     const { contacts, filter } = this.state;
     return (
@@ -66,9 +72,7 @@ class App extends Component {
         <TitleForm>Phonebook</TitleForm>
         <ContactForm updateState={this.updateState} />
         <TitleContacts>Contacts</TitleContacts>
-        {/* <Filter state={filter} updateFilter={this.updateFilter} /> */}
         <Filter state={filter} updateFilter={this.updateFilter} />
-
         {this.state.filter === '' ? (
           <ContactsList state={contacts} />
         ) : (

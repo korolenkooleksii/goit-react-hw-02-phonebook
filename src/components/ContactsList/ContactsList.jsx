@@ -1,6 +1,10 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import { ItemContacts, ListContacts } from './ContactsList.styled';
+import {
+  ItemContacts,
+  ListContacts,
+  ButtonDelete,
+} from './ContactsList.styled';
 
 const ContactsList = ({ state }) => {
   return (
@@ -8,6 +12,7 @@ const ContactsList = ({ state }) => {
       {state.map(({ name, number }) => (
         <ItemContacts key={nanoid()}>
           {name}: {number}
+          <ButtonDelete type='button'>Delete</ButtonDelete>
         </ItemContacts>
       ))}
     </ListContacts>
