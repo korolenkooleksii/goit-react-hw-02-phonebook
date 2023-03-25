@@ -17,8 +17,8 @@ const ContactsList = ({ state, deleteContact }) => {
           {name}: {number}
           <ButtonDelete
             type="button"
-            onClick={e => {
-              deleteContact(e.currentTarget.closest('li').id);
+            onClick={()=> {
+              deleteContact(id);
             }}
           >
             Delete
